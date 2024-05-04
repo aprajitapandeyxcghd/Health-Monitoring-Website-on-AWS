@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Captive Portal</title>
+  <style>
+    body {
+      background-color: #e6f7ff; /* Light shade of blue */
+      color: black;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .sensor-data {
+      display: none;
+      background-color: white;
+      color: black;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      width: 225px; /* Set image width to 225 pixels */
+      height: 225px; /* Set image height to 225 pixels */
+      margin-bottom: 20px;
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    input[type="text"] {
+      width: 200px;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="https://cdn.docplexus.com/116/3/3/069df40b-f4aa-422a-b565-cd6358561cc0__t.jpg" alt="Patient Image">
+    <br><br> <!-- Two line spacing -->
+    <input type="text" id="patientName" placeholder="Name of the Patient"><br>
+    <input type="text" id="patientAge" placeholder="Age">
+    <br><br> <!-- Two line spacing -->
+    <button onclick="showSensorData()">Enter</button>
+  </div>
+
+  <div class="sensor-data" id="sensorData">
+    <h1>Sensor Data</h1>
+    <p>Body Temperature: <span id="temperature"></span> °C</p>
+    <p>Pulse Rate: <span id="pulseRate"></span> BPM</p>
+  </div>
+
+  <script>
+    function getRandomArbitrary(min, max) {
+      return (Math.random() * (max - min) + min).toFixed(1);
+    }
+
+    function showSensorData() {
+      var patientName = document.getElementById("patientName").value;
+      var patientAge = document.getElementById("patientAge").value;
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".sensor-data").style.display = "block";
+
+      // Generate random temperature and pulse rate readings with slight differences
+      var initialTemp = getRandomArbitrary(40, 50);
+      var initialPulse = getRandomArbitrary(500, 550);
+      
+      document.getElementById("temperature").innerText = initialTemp;
+      document.getElementById("pulseRate").innerText = initialPulse;
+    }
+  </script>
+</body>
+</html>
